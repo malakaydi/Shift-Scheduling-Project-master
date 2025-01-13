@@ -105,6 +105,7 @@ The project uses MongoDB as the database system. You can set up MongoDB locally 
 # DevOps Infrastructure Documentation
 ## Table of Contents
 - [Docker Configuration](#docker-configuration)
+- [Jenkins Integration](#Jenkins-integration)
 - [Kubernetes Setup](#kubernetes-setup)
 - [Helm Charts](#helm-charts)
 - [ArgoCD Configuration](#argocd-configuration)
@@ -112,33 +113,51 @@ The project uses MongoDB as the database system. You can set up MongoDB locally 
 
 ## Docker Configuration
 ### Dockerfile for Services
+Each microservice has its own Dockerfile for containerization. These Dockerfiles define the environment and dependencies required for the services to run.
 ### Docker-Compose 
+A docker-compose.yml file orchestrates the startup of all microservices, MongoDB, and Kafka, ensuring seamless interaction between containers.
+
+## Jenkins Integration
+Jenkins is configured to streamline the CI/CD process by automating builds, tests, and deployments.
+**Pipeline Configuration:** Jenkinsfile scripts define multi-stage pipelines, including build, test, and deployment stages.
+**Integration with Kubernetes:** Jenkins integrates with Kubernetes to dynamically allocate build agents and manage deployments.
+**Notification System:** Jenkins is configured to send notifications on build or deployment status via Slack or email.
 
 ## Kubernetes Setup
-k8s/
-├── base/
-│   ├── api-gateway/
-│   ├── employee-service/
-│   ├── job-planning/
-│   └── alerts/
-└── overlays/
-    ├── development/
-    ├── staging/
-    └── production/
+The Kubernetes setup is organized into the following directories:
+Kubernetes/
+├── configmap.yaml
+│── kafka.yaml  
+|── microservices.yaml
+|── mongodb.yaml
+|── namespace.yaml
 
 ## Helm Charts
+Helm charts are provided for deploying the application in a Kubernetes cluster. The directory structure is as follows:
 helm/
 ├── shift-scheduling/
 │   ├── Chart.yaml
 │   ├── values.yaml
 │   └── templates/
-│       ├── deployments/
-│       ├── services/
-│       ├── configmaps/
-│       └── secrets/
+│       ├── api-gateway.yaml
+│       ├── deployment.yaml
+
+**Chart.yaml:** Metadata about the Helm chart.
+**values.yaml:** Default configuration values for the chart.
+**Templates Directory:** Contains Kubernetes resource templates for deployments, services, config maps, and secrets.
 
 ## ArgoCD Configuration
+ArgoCD is configured to automate the deployment of the Kubernetes manifests. It monitors the Git repository and applies changes automatically to the cluster.
+**Applications:** ArgoCD applications are defined to manage microservices.
+**Sync Policy:** Configured for automated syncing and rollback in case of failures.
 
+## CI/CD Pipeline
+A robust CI/CD pipeline automates the following stages:
+
+**1. Build:** Docker images for all microservices are built and tagged.
+**2. Test:** Automated tests are executed to ensure code quality and functionality.
+**3. Deploy:** Images are pushed to a container registry, and Kubernetes manifests are applied to the cluster.
+**4. Monitor:** Deployment success is monitored, with alerts configured for failures.
 
 ## Contributing
 Contributions are welcome! If you find any issues or have suggestions for improvement, please submit an issue or a pull request. For major changes, please open an issue first to discuss potential changes.
