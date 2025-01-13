@@ -102,5 +102,43 @@ After starting Zookeeper, you can start the Kafka server by running the followin
 ## Database
 The project uses MongoDB as the database system. You can set up MongoDB locally or use a cloud-based MongoDB service. Make sure to update the database connection configuration in the project files accordingly.
 
+# DevOps Infrastructure Documentation
+## Table of Contents
+- [Docker Configuration](#docker-configuration)
+- [Kubernetes Setup](#kubernetes-setup)
+- [Helm Charts](#helm-charts)
+- [ArgoCD Configuration](#argocd-configuration)
+- [CI/CD Pipeline](#cicd-pipeline)
+
+## Docker Configuration
+### Dockerfile for Services
+### Docker-Compose 
+
+## Kubernetes Setup
+k8s/
+├── base/
+│   ├── api-gateway/
+│   ├── employee-service/
+│   ├── job-planning/
+│   └── alerts/
+└── overlays/
+    ├── development/
+    ├── staging/
+    └── production/
+
+## Helm Charts
+helm/
+├── shift-scheduling/
+│   ├── Chart.yaml
+│   ├── values.yaml
+│   └── templates/
+│       ├── deployments/
+│       ├── services/
+│       ├── configmaps/
+│       └── secrets/
+
+## ArgoCD Configuration
+
+
 ## Contributing
 Contributions are welcome! If you find any issues or have suggestions for improvement, please submit an issue or a pull request. For major changes, please open an issue first to discuss potential changes.
