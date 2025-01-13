@@ -142,22 +142,22 @@ helm/
 │       ├── api-gateway.yaml
 │       ├── deployment.yaml
 
-**Chart.yaml:** Metadata about the Helm chart.
-**values.yaml:** Default configuration values for the chart.
-**Templates Directory:** Contains Kubernetes resource templates for deployments, services, config maps, and secrets.
+-**Chart.yaml:** Metadata about the Helm chart.
+-**values.yaml:** Default configuration values for the chart.
+-**Templates Directory:** Contains Kubernetes resource templates for deployments, services, config maps, and secrets.
 
 ## ArgoCD Configuration
 ArgoCD is configured to automate the deployment of the Kubernetes manifests. It monitors the Git repository and applies changes automatically to the cluster.
-**Applications:** ArgoCD applications are defined to manage microservices.
-**Sync Policy:** Configured for automated syncing and rollback in case of failures.
+-**Applications:** ArgoCD applications are defined to manage microservices.
+-**Sync Policy:** Configured for automated syncing and rollback in case of failures.
 
 ## CI/CD Pipeline
 A robust CI/CD pipeline automates the following stages:
 
-**1. Build:** Docker images for all microservices are built and tagged.
-**2. Test:** Automated tests are executed to ensure code quality and functionality.
-**3. Deploy:** Images are pushed to a container registry, and Kubernetes manifests are applied to the cluster.
-**4. Monitor:** Deployment success is monitored, with alerts configured for failures.
+-**1. Build:** Docker images for all microservices are built and tagged.
+-**2. Test:** Automated tests are executed to ensure code quality and functionality.
+-**3. Deploy:** Images are pushed to a container registry, and Kubernetes manifests are applied to the cluster.
+-**4. Monitor:** Deployment success is monitored, with alerts configured for failures.
 
 ## Contributing
 Contributions are welcome! If you find any issues or have suggestions for improvement, please submit an issue or a pull request. For major changes, please open an issue first to discuss potential changes.
