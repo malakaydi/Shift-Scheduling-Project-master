@@ -1,0 +1,54 @@
+syntax = "proto3";
+package jobPlanning;
+
+message JobPlanning {
+    string id = 1;
+    string employee_name= 2;
+    string position = 3;
+    string startDate = 4; 
+    string endDate = 5;   
+    
+}
+
+message GetJobPlanningRequest {
+    string job_planning_id = 1;
+}
+
+message GetJobPlanningResponse {
+    JobPlanning job_planning = 1;
+}
+
+message SearchJobPlanningsRequest {
+    string query = 1;
+}
+
+message SearchJobPlanningsResponse {
+    repeated JobPlanning job_plannings = 1;
+}
+
+message AddJobPlanningRequest {
+    string employee_name= 1;
+    string position = 2;
+    string startDate = 3; 
+    string endDate = 4;   
+}
+
+message AddJobPlanningResponse {
+    JobPlanning job_planning = 1;
+}
+
+message DeleteJobPlanningRequest {
+    string job_planning_id = 1;
+}
+
+message DeleteJobPlanningResponse {
+    string message = 1;
+}
+
+service JobPlanningService {
+    rpc GetJobPlanning(GetJobPlanningRequest) returns (GetJobPlanningResponse);
+    rpc SearchJobPlannings(SearchJobPlanningsRequest) returns (SearchJobPlanningsResponse);
+    rpc AddJobPlanning(AddJobPlanningRequest) returns (AddJobPlanningResponse);
+    rpc DeleteJobPlanning(DeleteJobPlanningRequest) returns (DeleteJobPlanningResponse);
+    
+}

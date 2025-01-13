@@ -1,0 +1,149 @@
+# API Gateway
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gateway
+  namespace: shift-scheduling
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api-gateway
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+    spec:
+      containers:
+      - name: api-gateway
+        image: malouaidi/api-gateway:1.0.0
+        ports:
+        - containerPort: 3000
+        envFrom:
+        - configMapRef:
+            name: app-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-gateway-service
+  namespace: shift-scheduling
+spec:
+  type: LoadBalancer
+  selector:
+    app: api-gateway
+  ports:
+  - port: 80
+    targetPort: 3000
+---
+# Employee Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee
+  namespace: shift-scheduling
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: employee
+  template:
+    metadata:
+      labels:
+        app: employee
+    spec:
+      containers:
+      - name: employee
+        image: malouaidi/employee:1.0.0
+        ports:
+        - containerPort: 50053
+        envFrom:
+        - configMapRef:
+            name: app-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: employee-service
+  namespace: shift-scheduling
+spec:
+  selector:
+    app: employee
+  ports:
+  - port: 50053
+    targetPort: 50053
+---
+# Job Planning Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jobplanning
+  namespace: shift-scheduling
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: jobplanning
+  template:
+    metadata:
+      labels:
+        app: jobplanning
+    spec:
+      containers:
+      - name: jobplanning
+        image: malouaidi/jobplanning:1.0.0
+        ports:
+        - containerPort: 50052
+        envFrom:
+        - configMapRef:
+            name: app-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: jobplanning-service
+  namespace: shift-scheduling
+spec:
+  selector:
+    app: jobplanning
+  ports:
+  - port: 50052
+    targetPort: 50052
+---
+# Alertes Service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: alertes
+  namespace: shift-scheduling
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: alertes
+  template:
+    metadata:
+      labels:
+        app: alertes
+    spec:
+      containers:
+      - name: alertes
+        image: malouaidi/alertes:1.0.0
+        ports:
+        - containerPort: 50051
+        envFrom:
+        - configMapRef:
+            name: app-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: alertes-service
+  namespace: shift-scheduling
+spec:
+  selector:
+    app: alertes
+  ports:
+  - port: 50051
+    targetPort: 50051
+

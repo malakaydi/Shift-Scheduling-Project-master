@@ -1,0 +1,59 @@
+syntax = "proto3";
+package employee;
+
+message Employee {
+    string id = 1;
+    string firstName = 2;
+    string lastName = 3;
+    int32 phoneNumber =4;
+    string email = 5;
+    string position = 6;
+    
+}
+
+message GetEmployeeRequest {
+    string employee_id = 1;
+}
+
+message GetEmployeeResponse {
+    Employee employee = 1;
+}
+
+message SearchEmployeesRequest {
+    string query = 1;
+}
+
+message SearchEmployeesResponse {
+    repeated Employee employees = 1;
+}
+
+message AddEmployeeRequest {
+    string firstName = 1;
+    string lastName = 2;
+    int32 phoneNumber =3;
+    string email = 4;
+    string position = 5;
+    
+}
+
+message AddEmployeeResponse {
+    Employee employee = 1;
+}
+
+
+message DeleteEmployeeRequest {
+    string employee_id = 1;
+}
+
+// New message for delete response
+message DeleteEmployeeResponse {
+    string message = 1;
+}
+
+service EmployeeService {
+    rpc GetEmployee(GetEmployeeRequest) returns (GetEmployeeResponse);
+    rpc SearchEmployees(SearchEmployeesRequest) returns (SearchEmployeesResponse);
+    rpc AddEmployee(AddEmployeeRequest) returns (AddEmployeeResponse);
+    rpc DeleteEmployee(DeleteEmployeeRequest) returns (DeleteEmployeeResponse);
+    
+}

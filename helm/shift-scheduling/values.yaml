@@ -1,0 +1,38 @@
+global:
+  environment: development
+
+apiGateway:
+  name: api-gateway
+  image:
+    repository: shift-scheduling-project-master-api-gateway
+    tag: latest
+  service:
+    type: ClusterIP
+    port: 3000
+
+employee:
+  name: employee-service
+  image:
+    repository: shift-scheduling-project-master-employee
+    tag: latest
+  service:
+    type: ClusterIP
+    port: 3001
+
+jobPlanning:
+  name: job-planning-service
+  image:
+    repository: malouaidi/jobplanning:1.0.0
+    tag: latest
+  service:
+    type: ClusterIP
+    port: 3002
+
+alertes:
+  name: alertes-service
+  image:
+    repository: shift-scheduling-project-master-alertes
+    tag: latest
+  service:
+    type: ClusterIP
+    port: 3003
