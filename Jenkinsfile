@@ -8,10 +8,10 @@ pipeline {
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
         VERSION = '1.0.0'
-        IMAGE_NAME_API_GATEWAY = 'malouaidi/api-gateway'
-        IMAGE_NAME_EMPLOYEE = 'malouaidi/employee'
-        IMAGE_NAME_JOB_PLANNING = 'malouaidi/jobplanning'
-        IMAGE_NAME_ALERTES = 'malouaidi/alertes'
+        IMAGE_NAME_API_GATEWAY = 'shift-scheduling-project-master-api-gatewayy'
+        IMAGE_NAME_EMPLOYEE = 'shift-scheduling-project-master-employee'
+        IMAGE_NAME_JOB_PLANNING = 'malouaidi/jobplanning:1.0.0'
+        IMAGE_NAME_ALERTES = 'shift-scheduling-project-master-alertes'
     }
 
     stages {
